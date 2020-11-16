@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
 .game {
+  font-weight: normal;
   padding: 1rem;
   width: 400px;
   min-height: 175px;
@@ -51,8 +54,14 @@
 
 .game__title {
   font-weight: bold;
+  font-size: larger;
 }
 
+.game__publisher {
+  font-style: italic;
+  display: inline;
+}
 .game__year {
   font-style: italic;
+  display: inline;
 }

@@ -33,7 +33,7 @@ function GameListing() {
 
   return (
     <div className="games-container">
-      <h1>Games</h1>
+      <h1>Video Game Collection</h1>
       {isLoading && (
         <LoadingSpinner
           size="50px"

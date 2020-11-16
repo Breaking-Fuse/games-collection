@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Delete, Edit } from "@material-ui/icons";
+import {useHistory} from "react-router-dom";
 import ErrorMessage from "./error-message";
 import { gamesCollection } from "../data/firebase";
 import "./game.css";
@@ -8,11 +9,9 @@ function Game(props) {
   const { id, data } = props;
   const { title, releaseYear, publisher, genres, hasBeaten, hasCompleted, rating, platforms} = data;
 
-  const genresString = genres;
-  const platformsString = platforms;
-
-
   const ratingString = "User Rating: " + rating + " / 10";
+
+  const history = useHistory();
   const [isDeleting, setIsDeleting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -33,15 +32,15 @@ function Game(props) {
     <div className="game">
       <div className="game__contents">
         <div className="game__title">{title}</div>
-        <div className="game__year">{releaseYear}</div>
         <div className="game__publisher">{publisher}</div>
-        <div className="game__genres">{genresString}</div>
+        <div className="game__year"> - {releaseYear}</div>
+        <div className="game__genres">Genre: {genres}</div>
         
-        <div className="game__hasBeaten">"Beaten" Status: {hasBeaten ? "Beaten" : "Not Beaten"}</div>
+        <div className="game__hasBeaten">{hasBeaten ? "✔ Beaten" : "✖ Not Beaten"}</div>
         
-        <div className="game__hasCompleted">"Completion" Status: {hasCompleted ? "Completed" : "Not Completed"}</div>
+        <div className="game__hasCompleted">{hasCompleted ? "✔ Completed" : "✖ Not Completed"}</div>
         <div className="game__rating">{ratingString}</div>
-        <div className="game__platforms">{platformsString}</div>
+        <div className="game__platforms">Platforms: {platforms}</div>
 
 
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
@@ -50,7 +49,7 @@ function Game(props) {
         <button className="game__button" disabled={isDeleting} onClick={deleteGame}>
           <Delete />
         </button>
-        <button className="game__button" onClick={() => {}}>
+        <button className="game__button" onClick={() => history.push(`/edit/${id}`)}>
           <Edit />
         </button>
       </div>
